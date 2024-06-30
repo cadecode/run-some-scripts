@@ -1,6 +1,8 @@
 # rabbitmq
 
 > A docker image for rabbitmq bundled some plugins，such as delay-message-exchange plugin
+> 
+> More about: https://github.com/cadecode/run-some-scripts/tree/main/rabbitmq
 
 ## Usage
 

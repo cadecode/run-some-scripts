@@ -1,6 +1,8 @@
 # nginx
 
-> A docker image for nginx bundled some plugins，such as http image filter module.
+> A docker image for nginx bundled some plugins，such as http image filter module
+>
+> More about: https://github.com/cadecode/run-some-scripts/tree/main/nginx
 
 ## Usage
 
