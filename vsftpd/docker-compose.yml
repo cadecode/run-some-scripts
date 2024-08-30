@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  vsftpd:
+    image: cadecode/vsftpd:3-centos7-fauria
+    restart: unless-stopped
+    ports:
+      - "20:20"
+      - "21:21"
+      - "21100-21110:21100-21110"
+    volumes:
+      - vsftpd-config:/etc/vsftpd
+      - ./home:/home/vsftpd
+      - ./log:/var/log/vsftpd
+    environment:
+      # Default user
+      FTP_USER: ftp
+      FTP_PASS: ftp123
+      # Passive mode
+      PASV_ADDRESS: 192.168.100.1
+      PASV_MIN_PORT: 21100
+      PASV_MAX_PORT: 21110
+      PASV_PROMISCUOUS: "YES"
+      REVERSE_LOOKUP_ENABLE: "NO"
+
+volumes:
+  vsftpd-config:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./config
+      o: bind
