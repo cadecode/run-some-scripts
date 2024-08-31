@@ -64,5 +64,6 @@ This image optimizes `fauria/vsftpd` project in several ways
 
 - Record both standard xferlog format and vsftpd logs
 - The vsftpd logs can be synchronized to stdout
+- The vsftpd logs can be rotated auto by logrotate
 - Virtual user account is not reset on restart
 - Redundant content is not appended to config file

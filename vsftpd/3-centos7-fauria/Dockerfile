@@ -20,7 +20,7 @@ RUN set -x; sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo \
   && yum makecache \
   && yum -y update \
   && yum clean all \
-  && yum install -y vsftpd db4-utils db4 iproute \
+  && yum install -y vsftpd db4-utils db4 iproute cronie\
   && yum clean all
 
 RUN set -x; usermod -u ${USER_ID} ftp \
@@ -48,6 +48,11 @@ COPY run-vsftpd.sh /usr/sbin/
 RUN set -x; chmod +x /usr/sbin/run-vsftpd.sh \
     && mkdir -p /home/vsftpd/ \
     && chown -R ftp:ftp /home/vsftpd/
+
+# Add logrotate job
+COPY logrotate.conf /etc/vsftpd/
+RUN (crontab -l; echo "0 1 * * * /usr/sbin/logrotate -f /etc/vsftpd/logrotate.conf") | crontab - \
+    && chmod 644 /etc/vsftpd/logrotate.conf
 
 VOLUME /home/vsftpd
 VOLUME /var/log/vsftpd

@@ -71,8 +71,11 @@ if [ $LOG_STDOUT ]; then
     # Use `tail` to redirect vsftpd log to STDOUT
     # but the disadvantage is that the log will have redundancy
     # It is better to work with a log auto rotation
-    tail -F -n 0 $VSFTPD_LOG_FILE > /dev/stdout &
+    tail -F $VSFTPD_LOG_FILE > /dev/stdout &
 fi
+
+## Run cron
+crond
 
 # Run vsftpd:
 &>/dev/null /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
