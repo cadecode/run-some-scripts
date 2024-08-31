@@ -12,6 +12,22 @@ Pull image
 docker pull cadecode/nginx:1.21.3-bundled-image-filter
 ```
 
+Edit docker-compose.yml
+```yaml
+version: "3.8"
+
+services:
+  nginx:
+    image: cadecode/nginx:1.21.3-bundled-image-filter
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /path/to/nginx.conf:/etc/nginx/nginx.conf
+      - /path/to/html:/usr/share/nginx/html
+```
+
 Run compose
 
 ```shell

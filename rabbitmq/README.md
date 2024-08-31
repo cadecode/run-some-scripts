@@ -12,6 +12,25 @@ Pull image
 docker pull cadecode/rabbitmq:3.8.23-bundled-delay-exchange
 ```
 
+Edit docker-compose.yml
+```yaml
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: cadecode/rabbitmq:3.8.23-bundled-delay-exchange
+    restart: unless-stopped
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - /path/to/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - rabbitmq-data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq-data:
+```
+
 Run compose
 
 ```shell
