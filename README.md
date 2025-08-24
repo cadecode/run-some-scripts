@@ -1,2 +1,3 @@
 # run-some-scripts
-Some scripts to run about containers, docker, k8s, and linux shell
+
+Some scripts to run about container, docker, k8s, shell and other.
